@@ -1,0 +1,105 @@
+openapi: "3.0.0"
+info:
+  title: "OpenAPI спецификация учебного проекта №1 @T1Academy"
+  version: "0.0.1"
+servers:
+  - url: http://localhost:8080/
+    description: "Dev server"
+paths:
+  /get/{id}:
+    get:
+      summary: "Метод получения времени работы по id"
+      operationId: "getById"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+                
+  /getAvgTime/{methodName}:
+    get:
+      summary: "Получение среднего времени работы по наименованию метода"
+      operationId: "getAvgExecuteTimeByMethodName"
+      parameters:
+      - name: "methodName"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "integer"
+                format: "int64"
+                
+  /getTotalTime/{methodName}:
+    get:
+      summary: "Получение суммарного времени работы метода по его наименованию"
+      operationId: "getTotalTimeByMethodName"
+      parameters:
+      - name: "methodName"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "integer"
+                format: "int64"
+                
+  /getByName/{methodName}:
+    get:
+      summary: "Получение всех данных о времени работы метода по его наименованию"
+      operationId: "getListMethod"
+      parameters:
+      - name: "methodName"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/TimeTrackerResponseDTOs"
+
+components:
+  schemas:
+    TimeTrackerResponseDTO:
+      type: object
+      required:
+        - id
+        - methodName
+        - executionTime
+      properties:
+        id:
+         type: "integer"
+         example: "123"
+        methodName:
+          type: string
+          example: "Library.returnBook()"
+        executionTime:
+          type: "integer"
+          example: "20"
+    TimeTrackerResponseDTOs:
+      type: array
+      items:
+        $ref: "#/components/schemas/TimeTrackerResponseDTO"
