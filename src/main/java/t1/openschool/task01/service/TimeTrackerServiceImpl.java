@@ -1,5 +1,6 @@
 package t1.openschool.task01.service;
 
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
@@ -35,6 +36,7 @@ public class TimeTrackerServiceImpl implements TimeTrackerService {
                 .orElse("Nothing found\n");
     }
 
+    @Transactional
     public List<TimeTrackerResponseDTO> findByName(@PathVariable String methodName) {
         List<TimeTracker> timeTracker = trackerRepository.findByMethodName(methodName);
         return timeTracker.stream()

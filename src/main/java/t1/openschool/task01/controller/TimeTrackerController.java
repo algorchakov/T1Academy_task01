@@ -1,7 +1,6 @@
 package t1.openschool.task01.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +16,6 @@ public class TimeTrackerController {
     private final TimeTrackerRepository timeTrackerRepository;
     private final TimeTrackerServiceImpl timeTrackerService;
 
-    @Autowired
     private TimeTrackerController(TimeTrackerRepository timeTrackerRepository,
                                   TimeTrackerServiceImpl timeTrackerService) {
         this.timeTrackerRepository = timeTrackerRepository;

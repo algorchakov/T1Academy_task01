@@ -13,13 +13,11 @@ import org.springframework.stereotype.Component;
 @Component
 @Table(name = "timetracker")
 public class TimeTracker {
-    @TableGenerator(name = "myGenerator", allocationSize = 1, initialValue = 20)
+    @TableGenerator(name = "myGenerator", allocationSize = 1, initialValue = 1)
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "myGenerator")
     private Long id;
-    @JoinColumn(name = "method_name")
     private String methodName;
-    @JoinColumn(name = "execution_time")
     private Float executionTime;
 }
 
